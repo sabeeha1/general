@@ -1,0 +1,44 @@
+So the takeaway of docker volume research is that
+1: docker run -it --name test-container -v /path/to/local/file/system:/app -p 3000:3000 getting-started /bin/sh
+>> gives full access to all existing files in ‘/path/to/local/file/system’ and do complete mapping between working directory inside the container and local path mounted.
+
+2: docker run -it --name test-container –v $(pwd):/app -p 3000:3000 getting-started /bin/sh
+>> So, here ‘pwd’ is current working directory and app is newly created directory inside a container that is mapped with the current working directory.
+
+2: docker run -it --name test-container1 –v volume_name -p 3000:3000 getting-started /bin/sh
+docker run -it --name test-container2 –v volume_name -p 3000:3000 getting-started /bin/sh
+Here, we can share the same volume with multiple containers, in the same way we can use the same directory with multiple containers also.
+
+
+
+Add user on Linux terminal to Docker group
+(Added benefit of adding user is, 1: we won’t have to add sudo with docker everytime to execute a command. 2. Plus any directory automatically created will have user rights on)
+1. To run Docker as a non-root user, you have to add your user to the docker group.
+2. Create a docker group if there isn’t one:
+$ sudo groupadd docker
+3. Add your user to the docker group:
+$ sudo usermod -aG docker [non-root user]
+4. Log out and log back in so that your group membership is re-evaluated.
+
+
+
+Docker run can be replaced with docker create but it does start the container instanly. However, we can start the conatiner \
+        in future whenever required. If we execute docker run command, it always creaes a new conatiner.
+
+Other concepts are as follows ---------------
+1.	Docs.docker.com to see the steps of dockers installation. This installation is only required once, then we can have multiple docker containers running in parallel independently.
+2.	docker run docker/whalesay cowsay boo ->Installed a docker Whalesay image. We can create multiple container of same image.
+3.	Docker run image, is used to run the docker image and creates an instance or container. if the image is already in computer, container is directly created otherwise it first downloads the image, then creates a container.
+4.	Docker run image:<version> like 4.0.0 or so to install specific version. This is version is called tag. If there is no tag, the latest version will be installed.
+5.	Alternatively, docker pull image is used to download the image but doesn’t create a container. Of course we can create ahead whenever needed.
+6.	Docker ps -> is used to list the containers on the system with their name status and id.
+7.	Docker ps -a to see the status of all running and exited containers.
+8.	Docker stop container-name -> to stop a container, or we can directly type exit. However the image still exists.
+9.	Docker rm container-name -> to remove a container. However, the image still exists.
+10.	Docker images -> to check the all the images in the docker.
+11.	To delete container, docker rmi image -> it deletes the image and all the dependent containers.
+12.	Docker exec name command -> to execute a command in the container from command prompt without restarting it.
+13.	Docker run imagename, runs the containers in the foreground and we can see the out on in the console. During this, we cannot perform any other operation, without pressing CTRL+C.
+14.	Docker run -d imagename, this will run the docker container in detach mode that means in the background mode. In this type of operation, user can resume operations meanwhile also.
+15.	In later stage also, we can do attach operation to a detached container too by usine ‘docker attach container-id’ (only few characters are enough to make it distinguishable.)
+16.	However a Docker runs in a no interactive mode, doesn’t accept any input from the user. TO make it interactive add ‘-i’ in the run command. Like run -i image or so to take input. To make complete interactive add t also and as a whole add ‘-it’ for complete interaction,

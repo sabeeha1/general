@@ -1,0 +1,58 @@
+Working with git on command made some issues that are completely resovled at pycharm.
+
+So here,
+1: first I crteated a repository at the github
+2: followed all the commands suggested by github at the front page.
+  These command were to run on the local system in the main directory:
+  - git init
+  - making README.md file
+  - git add -A
+  - git remote add origin "git/repo/http/link"
+  - git commit -m "Initial commit or special log"
+  - Now push with Pycharm button
+Thus push action makes trouble using command line, So it is very straight using pycharm button.
+
+TO ignore some files or directories in push operation , we can add .gitignore file
+
+And later, these files will not be uploaded up in the repo.
+>to remove any file
+: git rm filename
+
+If some command doesn't go as expected, may be it is due to cache problem, so we may use the follwing command to cler the cache
+: git rm -r --cached .
+
+Like .gitignore was not working my case, but after this command it did.
+
+------------------------------------------------
+WORKING IN BRANCHES
+------------------------------------------------
+
+If we are working in team, it is safe to use branches to work unless everyhting is fixed completely.
+So, i checked the branch position using
+> git branch
+
+Now I craete a new branch using:
+> git branch <branch-name>
+check gaian the branches
+> git branch
+
+Now checkout to the new branch
+
+> git checkout <branch name>
+
+Can verify, working branch by using
+> git branch
+** now make make changes securily and do commit in local branch
+
+>git commit -m "testing new branch"
+
+** Once everything is finalized, come in the master branch
+
+>git checkout master
+>git branch --merged
+** give the following command to merge the branches changes with master branch
+>git merge test2-1
+
+
+
+

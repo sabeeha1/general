@@ -1,0 +1,6 @@
+train: /home/neural/Documents/Sabeeha/PycharmProjects/yolov5/yolo/train/  # train images
+val: /home/neural/Documents/Sabeeha/PycharmProjects/yolov5/yolo/test/
+
+# Classes
+nc: 1  # number of classes
+names: ['0'] # class names
